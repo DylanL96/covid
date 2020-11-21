@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import styled from 'styled-components';
+import MapDisplay from './components/MapDisplay';
+import DataDisplay from './components/DataDisplay';
 
-function App() {
+const App = () => {
+  const [allData, setAllData] = useState([]);
+  const allURL = `https://corona.lmao.ninja/v3/covid-19/all`;
+
+  useEffect(() => {
+    axios.get(allURL)
+      .then(response => {
+        // console.log(response.data);
+        setAllData(response.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  },[allURL])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <React.Fragment>
+      <Title>
+        <p>There are a total of <Data>{allData.cases}</Data> COVID-19 cases around the world. In total, <Data>{allData.deaths}</Data> people have died from COVID-19.</p>
+      </Title>
+      <MapDisplay/>
+      <DataDisplay/>
+    </React.Fragment>
+  )
+};
+
+const Title = styled.div`
+  text-align:center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+`;
+
+const Data = styled.span`
+  color: red;
+`
 
 export default App;
