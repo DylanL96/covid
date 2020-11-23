@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import MapDisplay from './components/MapDisplay';
 import DataDisplay from './components/DataDisplay';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   const [allData, setAllData] = useState([]);
