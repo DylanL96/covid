@@ -1,8 +1,8 @@
 import React, {useEffect, useState, useMemo,} from 'react';
 import axios from 'axios';
 import Table from './Table';
-import SpecificData from './SpecificData';
-import {Link, BrowserRouter, Route} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import MapDisplay from './MapDisplay';
 
 const DataDisplay = () => {
   const [data, setData] = useState([]);
@@ -30,7 +30,7 @@ const DataDisplay = () => {
     {
       Header: "Country",
       accessor: "country",
-      Cell: ({ row }) => (<Link to={`/country/${row.id}`}>{row.values.country}</Link>)
+      Cell: ({ row }) => (<Link to={{pathname:`/${row.values.country}`}}>{row.values.country}</Link>)
     },
     {
       Header: "Cases",
@@ -57,13 +57,11 @@ const DataDisplay = () => {
   // Rendering the table and data 
   return (
     <div>
+      {loading && <p>Table Loading</p>}
+      <MapDisplay/>
       <h1>COVID-19 Statistics</h1>
       <p>Updated {date}</p>
-      {loading && <p>Table Loading</p>}
-      <BrowserRouter>
-        <Table columns={columns} data={data} />
-        <Route path="/country/:Id" component={(SpecificData)}/>
-      </BrowserRouter>
+      <Table columns={columns} data={data}/>
     </div>
   )
 };

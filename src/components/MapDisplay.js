@@ -3,6 +3,7 @@ import ReactTooltip from 'react-tooltip'
 import { ComposableMap, Geographies, Geography} from "react-simple-maps";
 import {scaleQuantile} from 'd3-scale';
 import LinearGradient from './LinearGradient.js';
+import axios from 'axios';
 
 const WORLD = require('./world.topo.json');
 
