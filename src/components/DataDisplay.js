@@ -59,7 +59,6 @@ const DataDisplay = () => {
     <div>
       {loading && <p>Table Loading</p>}
       <MapDisplay/>
-      <h1>COVID-19 Statistics</h1>
       <p>Updated {date}</p>
       <Table columns={columns} data={data}/>
     </div>

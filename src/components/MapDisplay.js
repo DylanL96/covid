@@ -224,6 +224,7 @@ const getHeatMapData = () => {
   ];
 };
 
+
 const MapDisplay = () => {
   const [tooltipContent, setTooltipContent] = useState('');
   const [data, setData] = useState(getHeatMapData());
